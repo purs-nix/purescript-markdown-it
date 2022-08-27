@@ -6,3 +6,4 @@ yarn.lock
 .psc-ide-port
 generated-docs
 output
+main.js
