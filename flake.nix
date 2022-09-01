@@ -8,7 +8,7 @@
         };
 
       ps-tools.follows = "purs-nix/ps-tools";
-      purs-nix.url = "github:purs-nix/purs-nix/ps-0.14";
+      purs-nix.url = "github:purs-nix/purs-nix/ps-0.15";
       utils.url = "github:ursi/flake-utils/8";
     };
 
@@ -36,9 +36,7 @@
                      nodePackages.purescript-language-server
                      our-node
                      ps-tools.pulp-15
-
-                     # for npm test
-                     ps-tools.purescript-0_13_8
+                     purs-nix.purescript
 
                      (ps.command
                         { bundle =

@@ -8,8 +8,7 @@ import Data.Tuple (Tuple(..))
 import Effect (Effect)
 import Effect.Class (liftEffect)
 import Jest (expectToEqual, test)
-import MarkdownIt (Preset(..), html, linkify, newMarkdownIt, render, renderString, use)
-import Node.Globals as Globals
+import MarkdownIt (Preset(..), html, linkify, highlight, newMarkdownIt, render, renderString)
 
 cases :: Array (Tuple String String)
 cases =
@@ -66,11 +65,11 @@ main = do
     html <- liftEffect $ render md input
     expectToEqual html output
 
-  test "use markdown-it-imsize" $ do
-    md <- liftEffect $ (newMarkdownIt Default $ linkify := true) >>=
-      use (Globals.unsafeRequire "markdown-it-imsize")
+  test "highlight" $ do
+    md <- liftEffect $ newMarkdownIt Default $
+      highlight := \str lang -> "<pre>" <> lang <> " - " <> str <> "</pre>"
     let
-      input = "![](src =32x32)"
-      output = "<p><img src=\"src\" alt=\"\" width=\"32\" height=\"32\"></p>\n"
+      input = "```js\nalert()\n```"
+      output = "<pre>js - alert()\n</pre>\n"
     html <- liftEffect $ render md input
     expectToEqual html output

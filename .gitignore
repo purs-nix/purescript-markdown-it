@@ -4,6 +4,8 @@ yarn.lock
 
 .psci_modules
 .psc-ide-port
+.purs-repl
+.spago
 generated-docs
 output
 main.js
